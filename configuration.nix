@@ -38,15 +38,14 @@
     	# firefox.enableAdobeFlash = true;
     	firefox.enablePepperFlash = true;
     	firefox.enableGoogleTalkPlugin = true;
-    	# pulseaudio = true;
 	};
 
-
+  hardware.pulseaudio.enable = true;  
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-     wget vim curl zsh htop tmux ntfs3g tilda zip unzip stack vlc vscode chromium firefox terminator gimp git
+     wget vim curl zsh htop tmux ntfs3g tilda kate okular zip unzip stack vlc vscode chromium firefox terminator gimp git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
