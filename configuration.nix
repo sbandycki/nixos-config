@@ -68,7 +68,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  printing.drivers = [ pkgs.hplip ];
+  services.printing.drivers = [ pkgs.hplip ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
