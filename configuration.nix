@@ -16,23 +16,25 @@
 
   networking.hostName = "lenux"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
+
 
   # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
+  i18n = {
+     consoleFont = "Lat2-Terminus16";
+     consoleKeyMap = "us";
+     defaultLocale = "en_IE.UTF-8";
+   };
 
   # Set your time zone.
   time.timeZone = "Europe/Dublin";
 
   nixpkgs.config = {
     	allowUnfree = true;
-    	#allowBroken = true;
-	chromium.enablePepperFlash = true;
- 	chromium.enablePepperPDF = true;
-	chromium.enableWideVine = true;
+    	# allowBroken = true;
+	# chromium.enablePepperFlash = true;
+ 	# chromium.enablePepperPDF = true;
+	# chromium.enableWideVine = true;
     	# firefox.enableAdobeFlash = true;
     	firefox.enablePepperFlash = true;
     	firefox.enableGoogleTalkPlugin = true;
@@ -44,7 +46,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-     wget vim curl zsh vlc vscode chromium firefox chrome-gnome-shell terminator gimp guake git
+     wget vim curl zsh htop tmux ntfs3g tilda zip unzip stack vlc vscode chromium firefox terminator gimp git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -66,6 +68,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  printing.drivers = [ pkgs.hplip ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -75,26 +78,37 @@
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
+  # Enable Xmonad
+  # windowManager.xmonad.enable = true;
+  # installs xmonad and makes it available
+  # windowManager.xmonad.enableContribAndExtras = true;
+  # makes xmonad-contrib and xmonad-extras available
+  # windowManager.default       = "xmonad";
+  # sets it as default
+  # desktopManager.default      = "none";
+  # the plain xmonad experience  
+
+
   # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   
   # Gnome
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome3.enable = true;
   
  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.seb = {
+  isNormalUser = true;
+  name = "seb";
+  group = "users";
   createHome = true;
   home = "/home/seb";
-  extraGroups = [ "wheel" "disk" "audio" "video" "networkmanager" ];
-  useDefaultShell = true;
+  extraGroups = [ "wheel" "networkmanager"];
+  shell = "/run/current-system/sw/bin/zsh";
   uid = 1000;
-  #   isNormalUser = true;
-  #   uid = 1000;
   };
-
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
