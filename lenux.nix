@@ -45,7 +45,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-     wget vim curl zsh htop ntfs3g okular zip unzip stack vscode chromium firefox terminology gimp git cmus rofi source-code-pro feh compton
+     wget vim curl zsh htop ntfs3g okular zip unzip stack vscode chromium firefox terminology gimp git cmus rofi source-code-pro feh compton networkmanagerapplet
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -97,7 +97,9 @@
   # services.xserver.desktopManager.gnome3.enable = true;
   
   # i3
-  services.xserver.windowManager.i3.enable = true;
+  windowManager.default = "i3";
+  windowManager.i3.enable = true;
+  windowManager.i3.package = pkgs.i3-gaps;
   
  
   # Define a user account. Don't forget to set a password with ‘passwd’.
