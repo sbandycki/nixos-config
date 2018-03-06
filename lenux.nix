@@ -45,12 +45,12 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-     wget vim curl zsh htop tmux ntfs3g tilda kate okular zip unzip stack vlc vscode chromium firefox terminator gimp git
+     wget vim curl zsh htop ntfs3g okular zip unzip stack vscode chromium firefox terminology gimp git cmus rofi source-code-pro feh compton
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.bash.enableCompletion = true;
+  programs.bash.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
@@ -89,12 +89,15 @@
 
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
   
   # Gnome
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome3.enable = true;
+  
+  # i3
+  services.xserver.windowManager.i3.enable = true;
   
  
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -105,7 +108,7 @@
   createHome = true;
   home = "/home/seb";
   extraGroups = [ "wheel" "networkmanager"];
-  shell = "/run/current-system/sw/bin/zsh";
+  shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
   };
 
