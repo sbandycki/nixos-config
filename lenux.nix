@@ -104,9 +104,9 @@
       };
   
   # i3
-  windowManager.default = "i3";
-  windowManager.i3.enable = true;
-  windowManager.i3.package = pkgs.i3-gaps;
+  services.xserver.windowManager.default = "i3";
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   
  
   # Define a user account. Don't forget to set a password with ‘passwd’.
