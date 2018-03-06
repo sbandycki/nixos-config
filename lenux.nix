@@ -45,7 +45,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-     wget vim curl zsh htop ntfs3g okular zip unzip stack vscode chromium firefox terminology gimp git cmus rofi source-code-pro feh compton networkmanagerapplet thunar
+     wget vim curl zsh htop ntfs3g okular zip unzip stack vscode chromium firefox terminology gimp git cmus rofi source-code-pro feh compton networkmanagerapplet thunar ranger
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
