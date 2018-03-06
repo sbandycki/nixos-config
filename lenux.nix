@@ -96,6 +96,13 @@
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome3.enable = true;
   
+  # slim
+  services.xserver.displayManager = {
+      slim.enable = true;
+      slim.autoLogin = true;
+      slim.defaultUser = "seb";
+      };
+  
   # i3
   windowManager.default = "i3";
   windowManager.i3.enable = true;
