@@ -13,10 +13,21 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true; 
-  
+
+
   # Supposedly better for the SSD.
   fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
   
+  boot.initrd.luks.devices = [
+    {
+      name = "root";
+      device = "/dev/disk/by-uuid/blkid";
+      preLVM = true;
+      allowDiscards = true;
+    }
+  ];
+
+
   networking.hostName = "lenux"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
@@ -24,31 +35,64 @@
 
   # Select internationalisation properties.
   i18n = {
-     consoleFont = "Lat2-Terminus16";
-     consoleKeyMap = "us";
-     defaultLocale = "en_IE.UTF-8";
-   };
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "gb";
+    defaultLocale = "en_IE.UTF-8";
+    };
 
   # Set your time zone.
-  time.timeZone = "Europe/Dublin";
+    time.timeZone = "Europe/Dublin";
 
   nixpkgs.config = {
-    	allowUnfree = true;
-    	# allowBroken = true;
-	# chromium.enablePepperFlash = true;
- 	# chromium.enablePepperPDF = true;
-	# chromium.enableWideVine = true;
-    	# firefox.enableAdobeFlash = true;
-    	firefox.enablePepperFlash = true;
-    	firefox.enableGoogleTalkPlugin = true;
-	};
+    #packageOverrides = pkgs: rec {
+    #polybar = pkgs.polybar.override {
+    #  i3Support = true;
+    #};
+  #};
+    allowUnfree = true;
+    # allowBroken = true;
+	  chromium.enablePepperFlash = true;
+ 	  chromium.enablePepperPDF = true;
+	  # chromium.enableWideVine = true;
+    # firefox.enableAdobeFlash = true;
+    firefox.enablePepperFlash = true;
+    firefox.enableGoogleTalkPlugin = true;
+    firefox.enableGnomeExtensions = true;
+	  };
 
-  hardware.pulseaudio.enable = true;  
+  hardware.pulseaudio.enable = true;
+  hardware.powerManagement.enable = true;  
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-     wget vim curl zsh htop ntfs3g okular mesa zip unzip stack vscode chromium firefox terminology gimp git cmus rofi source-code-pro feh compton networkmanagerapplet thunar ranger
+    compton
+    cmus
+    chromium
+    chrome-gnome-shell
+    curl
+    feh 
+    firefox 
+    gimp
+    git
+    htop  
+    mesa 
+    networkmanagerapplet
+    ncdu
+    ntfs3g
+    okular
+    polybar
+    ranger
+    source-code-pro
+    tmux
+    unzip
+    unrar
+    vim
+    vscode 
+    wget
+    which
+    zip
+    zsh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -59,8 +103,21 @@
 
   # List services that you want to enable:
 
+
+  services.acpid.enable = true;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+
+  services.dbus.packages = [ pkgs.gnome3.gconf.out ];
+
+  # needed by gtk apps
+  services.gnome3.at-spi2-core.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -74,7 +131,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
+  services.xserver.layout = "uk";
   services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
@@ -96,20 +153,26 @@
   # services.xserver.desktopManager.plasma5.enable = true;
   
   # Gnome
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.displayManager = {
+  	  gdm.enable = true;
+  	  gdm.wayland = false;
+  	  gdm.autoLogin.enable = true;
+  	  gdm.autoLogin.user = "seb";
+  	  };
+  services.xserver.desktopManager.gnome3.enable = true;
   
   # slim
-  services.xserver.displayManager = {
-      slim.enable = true;
-      slim.autoLogin = true;
-      slim.defaultUser = "seb";
-      };
+  # services.xserver.displayManager = {
+  #   slim.enable = true;
+  #   slim.autoLogin = true;
+  #   slim.defaultUser = "seb";
+  #   };
   
   # i3
-  services.xserver.windowManager.default = "i3";
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
+  # services.xserver.desktopManager.xterm.enable = false;
+  # services.xserver.windowManager.default = "i3";
+  # services.xserver.windowManager.i3.enable = true;
+  # services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   
  
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -119,7 +182,7 @@
   group = "users";
   createHome = true;
   home = "/home/seb";
-  extraGroups = [ "wheel" "networkmanager"];
+  extraGroups = [ "wheel" "networkmanager" "docker"];
   shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
   };
@@ -128,6 +191,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "17.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
 
 }
