@@ -47,9 +47,9 @@
  
     allowUnfree = true;
     # allowBroken = true;
-	  chromium.enablePepperFlash = true;
- 	  chromium.enablePepperPDF = true;
-	  # chromium.enableWideVine = true;
+    chromium.enablePepperFlash = true;
+    chromium.enablePepperPDF = true;
+    # chromium.enableWideVine = true;
     # firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
     firefox.enableGoogleTalkPlugin = true;
@@ -66,7 +66,6 @@
     chromium
     chrome-gnome-shell
     curl
-    feh 
     firefox 
     freecad
     gimp
@@ -99,7 +98,6 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
-
 
   services.acpid.enable = true;
   # services.thermald.enable = true;
