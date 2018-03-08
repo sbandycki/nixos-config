@@ -68,7 +68,12 @@
     firefox.enableGnomeExtensions = true;
 	  };
 
+  
+  # Enable sound
+  sound.enable = true;
   hardware.pulseaudio.enable = true;
+  
+  # Power 
   powerManagement.enable = true;  
 
   # List packages installed in system profile. To search by name, run:
