@@ -36,7 +36,7 @@
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "gb";
+    consoleKeyMap = "uk";
     defaultLocale = "en_IE.UTF-8";
     };
 
@@ -44,11 +44,7 @@
     time.timeZone = "Europe/Dublin";
 
   nixpkgs.config = {
-    #packageOverrides = pkgs: rec {
-    #polybar = pkgs.polybar.override {
-    #  i3Support = true;
-    #};
-  #};
+ 
     allowUnfree = true;
     # allowBroken = true;
 	  chromium.enablePepperFlash = true;
@@ -61,27 +57,27 @@
 	  };
 
   hardware.pulseaudio.enable = true;
-  hardware.powerManagement.enable = true;  
+  powerManagement.enable = true;  
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    compton
     cmus
     chromium
     chrome-gnome-shell
     curl
     feh 
     firefox 
+    freecad
     gimp
     git
     htop  
+    libreoffice
     mesa 
     networkmanagerapplet
     ncdu
     ntfs3g
     okular
-    polybar
     ranger
     source-code-pro
     tmux
@@ -91,6 +87,7 @@
     vscode 
     wget
     which
+    vlc
     zip
     zsh
   ];
@@ -105,13 +102,8 @@
 
 
   services.acpid.enable = true;
-  services.thermald.enable = true;
+  # services.thermald.enable = true;
   services.tlp.enable = true;
-
-  services.dbus.packages = [ pkgs.gnome3.gconf.out ];
-
-  # needed by gtk apps
-  services.gnome3.at-spi2-core.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -135,18 +127,23 @@
   services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  services.xserver.libinput {
+    enable = true;
+    disableWhileTyping = true;
+    naturalScrolling = false; # reverse scrolling
+    scrollMethod = "twofinger";
+    tapping = true;
+    tappingDragLock = false;
+  };
 
   # Enable Xmonad
-  # windowManager.xmonad.enable = true;
-  # installs xmonad and makes it available
-  # windowManager.xmonad.enableContribAndExtras = true;
+  windowManager.xmonad.enable = true;
   # makes xmonad-contrib and xmonad-extras available
-  # windowManager.default       = "xmonad";
+  windowManager.xmonad.enableContribAndExtras = true;
   # sets it as default
-  # desktopManager.default      = "none";
+  # windowManager.default       = "xmonad";
   # the plain xmonad experience  
-
+  # desktopManager.default      = "none";
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
@@ -160,20 +157,16 @@
   	  gdm.autoLogin.user = "seb";
   	  };
   services.xserver.desktopManager.gnome3.enable = true;
+  services.dbus.packages = [ pkgs.gnome3.gconf.out ];
+  # needed by gtk apps
+  services.gnome3.at-spi2-core.enable = true;
   
   # slim
   # services.xserver.displayManager = {
   #   slim.enable = true;
   #   slim.autoLogin = true;
   #   slim.defaultUser = "seb";
-  #   };
-  
-  # i3
-  # services.xserver.desktopManager.xterm.enable = false;
-  # services.xserver.windowManager.default = "i3";
-  # services.xserver.windowManager.i3.enable = true;
-  # services.xserver.windowManager.i3.package = pkgs.i3-gaps;
-  
+  #   };  
  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.seb = {
