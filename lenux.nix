@@ -24,7 +24,7 @@
   # Grub menu is painted really slowly on HiDPI, so we lower the
   # resolution. Unfortunately, scaling to 1280x720 (keeping aspect
   # ratio) doesn't seem to work, so we just pick another low one.
-  boot.loader.grub.gfxmodeEfi = "1900x1080";
+  boot.loader.grub.gfxmodeEfi = "1920x1080";
 
 
   # Supposedly better for the SSD.
