@@ -11,8 +11,20 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true; 
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true; 
+
+  # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Grub menu is painted really slowly on HiDPI, so we lower the
+  # resolution. Unfortunately, scaling to 1280x720 (keeping aspect
+  # ratio) doesn't seem to work, so we just pick another low one.
+  boot.loader.grub.gfxmodeEfi = "1900x1080";
 
 
   # Supposedly better for the SSD.
@@ -36,7 +48,7 @@
   # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "uk";
+    consoleKeyMap = "us";
     defaultLocale = "en_IE.UTF-8";
     };
 
@@ -129,7 +141,7 @@
   xserver = {
   # Enable the X11 windowing system.
   enable = true;
-  layout = "uk";
+  layout = "gb";
   xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
