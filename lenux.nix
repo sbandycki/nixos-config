@@ -33,7 +33,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/blkid";
+      device = "/dev/disk/by-uuid/0037086d-4883-4a9d-9962-fc019eb2be46";
       preLVM = true;
       allowDiscards = true;
     }
@@ -96,7 +96,9 @@
     okular
     ranger
     rofi
+    solaar
     source-code-pro
+    tilda
     tmux
     unzip
     unrar
@@ -142,6 +144,13 @@
   # Enable CUPS to print documents.
   printing.enable = true;
   printing.drivers = [ pkgs.hplip ];
+  printing.browsing = true;
+  printing.listenAddresses = [ "*:631" ]; # Not 100% sure this is needed and you might want to restrict to the local network
+
+  # Enable automatic discovery of the printer from other Linux systems with avahi running.
+  avahi.enable = true;
+  avahi.publish.enable = true;
+  avahi.publish.userServices = true;
 
   xserver = {
   # Enable the X11 windowing system.
