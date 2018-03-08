@@ -99,13 +99,6 @@
 
   # List services that you want to enable:
 
-  services.acpid.enable = true;
-  # services.thermald.enable = true;
-  services.tlp.enable = true;
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
   # Docker
   virtualisation.docker.enable = true;
 
@@ -115,17 +108,31 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplip ];
+  services = {
 
+  dbus.packages = [ pkgs.gnome3.gconf.out ];
+  # needed by gtk apps
+  gnome3.at-spi2-core.enable = true;
+  
+  acpid.enable = true;
+  # thermald.enable = true;
+  tlp.enable = true;
+
+  # Enable the OpenSSH daemon.
+  openssh.enable = true;
+
+  # Enable CUPS to print documents.
+  printing.enable = true;
+  printing.drivers = [ pkgs.hplip ];
+
+  xserver = {
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "uk";
-  services.xserver.xkbOptions = "eurosign:e";
+  enable = true;
+  layout = "uk";
+  xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
-  services.xserver.libinput = {
+  libinput = {
     enable = true;
     disableWhileTyping = true;
     naturalScrolling = false; # reverse scrolling
@@ -135,37 +142,41 @@
   };
 
   # Enable Xmonad
-  windowManager.xmonad.enable = true;
-  # makes xmonad-contrib and xmonad-extras available
-  windowManager.xmonad.enableContribAndExtras = true;
+  windowManager.xmonad = { 
+    enable = true;
+    # makes xmonad-contrib and xmonad-extras available
+    enableContribAndExtras = true;
+  };
   # sets it as default
   # windowManager.default       = "xmonad";
   # the plain xmonad experience  
   # desktopManager.default      = "none";
 
   # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  # displayManager.sddm.enable = true;
+  # desktopManager.plasma5.enable = true;
   
-  # Gnome
-  services.xserver.displayManager = {
+  # Gdm
+  displayManager = {
   	  gdm.enable = true;
   	  gdm.wayland = false;
   	  gdm.autoLogin.enable = true;
   	  gdm.autoLogin.user = "seb";
-  	  };
-  services.xserver.desktopManager.gnome3.enable = true;
-  services.dbus.packages = [ pkgs.gnome3.gconf.out ];
-  # needed by gtk apps
-  services.gnome3.at-spi2-core.enable = true;
+  	};
+  
+  # Gnome
+  desktopManager.gnome3.enable = true;
+  
   
   # slim
-  # services.xserver.displayManager = {
+  # displayManager = {
   #   slim.enable = true;
   #   slim.autoLogin = true;
   #   slim.defaultUser = "seb";
-  #   };  
- 
+  #   };
+    };  
+  };
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.seb = {
   isNormalUser = true;
