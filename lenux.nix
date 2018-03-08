@@ -125,7 +125,7 @@
   services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
-  services.xserver.libinput {
+  services.xserver.libinput = {
     enable = true;
     disableWhileTyping = true;
     naturalScrolling = false; # reverse scrolling
