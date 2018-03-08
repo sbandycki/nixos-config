@@ -144,8 +144,13 @@
   # Enable Xmonad
   windowManager.xmonad = { 
     enable = true;
-    # makes xmonad-contrib and xmonad-extras available
     enableContribAndExtras = true;
+    extraPackages = haskellPackages: [
+        haskellPackages.xmonad-contrib
+        haskellPackages.xmonad-extras
+        haskellPackages.xmobar
+        haskellPackages.xmonad
+      ];
   };
   # sets it as default
   # windowManager.default       = "xmonad";
