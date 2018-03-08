@@ -78,6 +78,7 @@
     ntfs3g
     okular
     ranger
+    rofi
     source-code-pro
     tmux
     unzip
