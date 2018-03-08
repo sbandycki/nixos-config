@@ -83,10 +83,12 @@
     chromium
     chrome-gnome-shell
     curl
+    dmenu
     firefox 
     freecad
     gimp
     git
+    glxinfo
     htop  
     libreoffice
     mesa 
@@ -114,6 +116,7 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.bash.enableCompletion = true;
+  programs.zsh.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
@@ -173,16 +176,19 @@
     enable = true;
     enableContribAndExtras = true;
     extraPackages = haskellPackages: [
-        haskellPackages.xmonad-contrib
-        haskellPackages.xmonad-extras
+    haskellPackages.xmonad-contrib
+       haskellPackages.xmonad-extras
         haskellPackages.xmobar
         haskellPackages.xmonad
       ];
   };
+
   # sets it as default
-  # windowManager.default       = "xmonad";
+  #  windowManager.default = "xmonad";
   # the plain xmonad experience  
-  # desktopManager.default      = "none";
+  # desktopManager.default = "none";
+  # xterm screen on start
+  # desktopManager.xterm.enable = false;
 
   # Enable the KDE Desktop Environment.
   # displayManager.sddm.enable = true;
@@ -202,10 +208,12 @@
   
   # slim
   # displayManager = {
-  #   slim.enable = true;
-  #   slim.autoLogin = true;
-  #   slim.defaultUser = "seb";
-  #   };
+  #  slim.enable = true;
+  #  slim.autoLogin = true;
+  #  slim.defaultUser = "seb";
+  # };
+    
+
     };  
   };
   
