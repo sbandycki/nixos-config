@@ -198,23 +198,30 @@
   # desktopManager.plasma5.enable = true;
   
   # Gdm
-   displayManager = {
-  	gdm.enable = true;
-      	gdm.wayland = false;
-  	gdm.autoLogin.enable = true;
-  	gdm.autoLogin.user = "seb";
-  	};
+  # displayManager = {
+  #	gdm.enable = true;
+  # gdm.wayland = false;
+  #	gdm.autoLogin.enable = true;
+  #	gdm.autoLogin.user = "seb";
+  #	};
   
   # Gnome
-   desktopManager.gnome3.enable = true;
+  # desktopManager.gnome3.enable = true;
+
+     
+  # i3
+   services.xserver.desktopManager.xterm.enable = false;
+   services.xserver.windowManager.default = "i3";
+   services.xserver.windowManager.i3.enable = true;
+   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   
   
   # slim
-  #displayManager = {
-  #  slim.enable = true;
-  #  slim.autoLogin = true;
-  #  slim.defaultUser = "seb";
-  # };
+    displayManager = {
+    slim.enable = true;
+    slim.autoLogin = true;
+    slim.defaultUser = "seb";
+   };
     
 
     };  
