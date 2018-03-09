@@ -4,11 +4,13 @@
 
 { config, pkgs, ... }:
 
+
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
 
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
@@ -83,20 +85,26 @@
     cmus
     chromium
     chrome-gnome-shell
+    compton
+    gnome3.cheese
     curl
     dmenu
+    dunst
+    feh
     firefox 
     freecad
     gimp
     git
     glxinfo
-    htop  
+    htop
+    khal
     libreoffice
     mesa 
     networkmanagerapplet
     ncdu
     ntfs3g
     okular
+    pavucontrol
     ranger
     rofi
     solaar
@@ -104,11 +112,15 @@
     tmux
     unzip
     unrar
+    vanilla-dmz
+    vdirsyncer
     vim
     vscode 
     wget
     which
     vlc
+    enlightenment.terminology
+    xorg.xhost
     zip
     zsh
   ];
@@ -135,9 +147,9 @@
 
   services = {
 
-    dbus.packages = [ pkgs.gnome3.gconf.out ];
+  # dbus.packages = [ pkgs.gnome3.gconf.out ];
   # needed by gtk apps
-    gnome3.at-spi2-core.enable = true;
+  # gnome3.at-spi2-core.enable = true;
   
   acpid.enable = true;
   # thermald.enable = true;
@@ -162,7 +174,7 @@
   enable = true;
   layout = "gb";
   xkbOptions = "eurosign:e";
-  # videoDrivers = [ "nvidia" ];
+  # videoDrivers = [ "intel nvidia" ];
 
   # Enable touchpad support.
   libinput = {
@@ -210,10 +222,10 @@
 
      
   # i3
-    desktopManager.xterm.enable = false;
-    windowManager.default = "i3";
-    windowManager.i3.enable = true;
-    windowManager.i3.package = pkgs.i3-gaps;
+   desktopManager.xterm.enable = false;
+   windowManager.default = "i3";
+   windowManager.i3.enable = true;
+   windowManager.i3.package = pkgs.i3-gaps;
   
   
   # slim
@@ -243,6 +255,6 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "17.09"; # Did you read the comment?
 
 }
