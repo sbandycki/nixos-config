@@ -79,6 +79,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    arandr
     cmus
     chromium
     chrome-gnome-shell
@@ -99,7 +100,6 @@
     ranger
     rofi
     solaar
-    source-code-pro
     tilda
     tmux
     unzip
@@ -112,6 +112,8 @@
     zip
     zsh
   ];
+
+  fonts.fonts = [ pkgs.source-code-pro ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -133,9 +135,9 @@
 
   services = {
 
-  dbus.packages = [ pkgs.gnome3.gconf.out ];
+    dbus.packages = [ pkgs.gnome3.gconf.out ];
   # needed by gtk apps
-  gnome3.at-spi2-core.enable = true;
+    gnome3.at-spi2-core.enable = true;
   
   acpid.enable = true;
   # thermald.enable = true;
@@ -160,6 +162,7 @@
   enable = true;
   layout = "gb";
   xkbOptions = "eurosign:e";
+  # videoDrivers = [ "nvidia" ];
 
   # Enable touchpad support.
   libinput = {
@@ -172,19 +175,19 @@
   };
 
   # Enable Xmonad
-  windowManager.xmonad = { 
-    enable = true;
-    enableContribAndExtras = true;
-    extraPackages = haskellPackages: [
-    haskellPackages.xmonad-contrib
-       haskellPackages.xmonad-extras
-        haskellPackages.xmobar
-        haskellPackages.xmonad
-      ];
-  };
+  #windowManager.xmonad = { 
+  #  enable = true;
+  #  enableContribAndExtras = true;
+  #  extraPackages = haskellPackages: [
+  #  haskellPackages.xmonad-contrib
+  #     haskellPackages.xmonad-extras
+  #      haskellPackages.xmobar
+  #      haskellPackages.xmonad
+  #    ];
+  #};
 
   # sets it as default
-  #  windowManager.default = "xmonad";
+  # windowManager.default = "xmonad";
   # the plain xmonad experience  
   # desktopManager.default = "none";
   # xterm screen on start
@@ -195,19 +198,19 @@
   # desktopManager.plasma5.enable = true;
   
   # Gdm
-  displayManager = {
-  	  gdm.enable = true;
-  	  gdm.wayland = false;
-  	  gdm.autoLogin.enable = true;
-  	  gdm.autoLogin.user = "seb";
+   displayManager = {
+  	gdm.enable = true;
+      	gdm.wayland = false;
+  	gdm.autoLogin.enable = true;
+  	gdm.autoLogin.user = "seb";
   	};
   
   # Gnome
-  desktopManager.gnome3.enable = true;
+   desktopManager.gnome3.enable = true;
   
   
   # slim
-  # displayManager = {
+  #displayManager = {
   #  slim.enable = true;
   #  slim.autoLogin = true;
   #  slim.defaultUser = "seb";
