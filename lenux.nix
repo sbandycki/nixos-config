@@ -210,10 +210,10 @@
 
      
   # i3
-   services.xserver.desktopManager.xterm.enable = false;
-   services.xserver.windowManager.default = "i3";
-   services.xserver.windowManager.i3.enable = true;
-   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
+    desktopManager.xterm.enable = false;
+    windowManager.default = "i3";
+    windowManager.i3.enable = true;
+    windowManager.i3.package = pkgs.i3-gaps;
   
   
   # slim
