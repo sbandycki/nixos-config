@@ -125,6 +125,7 @@
     wget
     which
     xfce.thunar
+    xorg.xbacklight
     vlc
     zip
     zsh
