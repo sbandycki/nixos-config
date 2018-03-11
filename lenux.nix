@@ -4,7 +4,6 @@
 
 { config, pkgs, ... }:
 
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -35,7 +34,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/blkid";
+      device = "/dev/disk/by-uuid/0037086d-4883-4a9d-9962-fc019eb2be46";
       preLVM = true;
       allowDiscards = true;
     }
@@ -58,7 +57,8 @@
     time.timeZone = "Europe/Dublin";
 
   nixpkgs.config = {
- 
+
+
     allowUnfree = true;
     # allowBroken = true;
     chromium.enablePepperFlash = true;
@@ -76,7 +76,13 @@
   hardware.pulseaudio.enable = true;
   
   # Power 
-  powerManagement.enable = true;  
+  powerManagement.enable = true; 
+
+
+  # Use librsvg's gdk-pixbuf loader cache file as it enables gdk-pixbuf to load SVG files (important for icons)
+    environment.sessionVariables = {
+      GDK_PIXBUF_MODULE_FILE = "$(echo ${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/*/loaders.cache)";
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -86,7 +92,6 @@
     chromium
     chrome-gnome-shell
     compton
-    gnome3.cheese
     curl
     dmenu
     dunst
@@ -99,6 +104,7 @@
     htop
     khal
     libreoffice
+    lxappearance
     mesa 
     networkmanagerapplet
     ncdu
@@ -108,7 +114,7 @@
     ranger
     rofi
     solaar
-    tilda
+    sxiv
     tmux
     unzip
     unrar
@@ -118,9 +124,8 @@
     vscode 
     wget
     which
+    xfce.thunar
     vlc
-    enlightenment.terminology
-    xorg.xhost
     zip
     zsh
   ];
@@ -144,6 +149,16 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+ 
+
+  # steam
+  users.users.seb.packages = [
+    pkgs.steam
+  ];
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
+
 
   services = {
 
@@ -174,7 +189,7 @@
   enable = true;
   layout = "gb";
   xkbOptions = "eurosign:e";
-  # videoDrivers = [ "intel nvidia" ];
+  # videoDrivers = [ "nvidia" "intel" ];
 
   # Enable touchpad support.
   libinput = {
@@ -246,7 +261,7 @@
   group = "users";
   createHome = true;
   home = "/home/seb";
-  extraGroups = [ "wheel" "networkmanager" "docker"];
+  extraGroups = [ "wheel" "networkmanager" "docker" "video" ];
   shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
   };
@@ -256,5 +271,6 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "18.03"; # Did you read the comment?
+
 
 }
