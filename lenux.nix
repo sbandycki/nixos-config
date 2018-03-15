@@ -4,6 +4,8 @@
 
 { config, pkgs, ... }:
 
+
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -78,19 +80,26 @@
   # Power 
   powerManagement.enable = true; 
 
+  # Optimus
+  # hardware.bumblebee.enable = true;
+  # hardware.bumblebee.driver = "nouveau";
+  # hardware.bumblebee.connectDisplay = true;
 
   # Use librsvg's gdk-pixbuf loader cache file as it enables gdk-pixbuf to load SVG files (important for icons)
-    environment.sessionVariables = {
-      GDK_PIXBUF_MODULE_FILE = "$(echo ${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/*/loaders.cache)";
-  };
+  #   environment.sessionVariables = {
+  #    GDK_PIXBUF_MODULE_FILE = "$(echo ${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/*/loaders.cache)";
+  #};
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    
+    android-udev-rules
     arandr
+    calc
     cmus
     chromium
-    chrome-gnome-shell
+    # chrome-gnome-shell
     compton
     curl
     dmenu
@@ -101,6 +110,7 @@
     gimp
     git
     glxinfo
+    go-mtpfs
     htop
     khal
     libreoffice
@@ -109,15 +119,19 @@
     networkmanagerapplet
     ncdu
     ntfs3g
+    xorg.xbacklight
     okular
     pavucontrol
+    pciutils
     ranger
     rofi
     solaar
     sxiv
+    # tilda
     tmux
     unzip
     unrar
+    # yakuake
     vanilla-dmz
     vdirsyncer
     vim
@@ -125,13 +139,13 @@
     wget
     which
     xfce.thunar
-    xorg.xbacklight
+    xorg.xinit
     vlc
     zip
     zsh
   ];
 
-  fonts.fonts = [ pkgs.source-code-pro ];
+  fonts.fonts = [ pkgs.source-code-pro pkgs.inconsolata ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -139,7 +153,7 @@
   programs.zsh.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
+  
   # List services that you want to enable:
 
   # Docker
@@ -158,7 +172,6 @@
   ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
-
 
 
   services = {
@@ -190,7 +203,7 @@
   enable = true;
   layout = "gb";
   xkbOptions = "eurosign:e";
-  # videoDrivers = [ "nvidia" "intel" ];
+  # videoDrivers = [ "nouveau" "intel" ];
 
   # Enable touchpad support.
   libinput = {
@@ -227,10 +240,10 @@
   
   # Gdm
   # displayManager = {
-  #	gdm.enable = true;
-  # gdm.wayland = false;
-  #	gdm.autoLogin.enable = true;
-  #	gdm.autoLogin.user = "seb";
+  #  gdm.enable = true;
+  #  gdm.wayland = false;
+  #  gdm.autoLogin.enable = true;
+  #  gdm.autoLogin.user = "seb";
   #	};
   
   # Gnome
@@ -245,11 +258,11 @@
   
   
   # slim
-    displayManager = {
-    slim.enable = true;
-    slim.autoLogin = true;
-    slim.defaultUser = "seb";
-   };
+   #  displayManager = {
+   # slim.enable = true;
+   # slim.autoLogin = true;
+   # slim.defaultUser = "seb";
+   #};
     
 
     };  
