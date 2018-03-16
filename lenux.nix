@@ -143,6 +143,7 @@
     vlc
     zip
     zsh
+    xhost
   ];
 
   fonts.fonts = [ pkgs.source-code-pro pkgs.inconsolata ];
