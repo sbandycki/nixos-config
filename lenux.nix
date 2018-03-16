@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/0037086d-4883-4a9d-9962-fc019eb2be46";
+      device = "/dev/disk/by-uuid/blkid";
       preLVM = true;
       allowDiscards = true;
     }
@@ -201,7 +201,7 @@
   xserver = {
   # Enable the X11 windowing system.
   enable = true;
-  layout = "gb";
+  layout = "pl";
   xkbOptions = "eurosign:e";
   # videoDrivers = [ "nouveau" "intel" ];
 
@@ -258,11 +258,11 @@
   
   
   # slim
-   #  displayManager = {
-   # slim.enable = true;
-   # slim.autoLogin = true;
-   # slim.defaultUser = "seb";
-   #};
+    displayManager = {
+    slim.enable = true;
+    slim.autoLogin = true;
+    slim.defaultUser = "seb";
+   };
     
 
     };  
@@ -284,7 +284,7 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "17.09"; # Did you read the comment?
 
 
 }
