@@ -63,13 +63,13 @@
 
     allowUnfree = true;
     # allowBroken = true;
-    chromium.enablePepperFlash = true;
-    chromium.enablePepperPDF = true;
+    # chromium.enablePepperFlash = true;
+    # chromium.enablePepperPDF = true;
     # chromium.enableWideVine = true;
     # firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
     firefox.enableGoogleTalkPlugin = true;
-    firefox.enableGnomeExtensions = true;
+    # firefox.enableGnomeExtensions = true;
 	  };
 
   
@@ -81,21 +81,24 @@
   powerManagement.enable = true; 
 
   # Optimus
-  # hardware.bumblebee.enable = true;
-  # hardware.bumblebee.driver = "nouveau";
+  hardware.bumblebee.enable = true;
+  hardware.bumblebee.driver = "nvidia";
   # hardware.bumblebee.connectDisplay = true;
 
   # Use librsvg's gdk-pixbuf loader cache file as it enables gdk-pixbuf to load SVG files (important for icons)
   #   environment.sessionVariables = {
   #    GDK_PIXBUF_MODULE_FILE = "$(echo ${pkgs.librsvg.out}/lib/gdk-pixbuf-2.0/*/loaders.cache)";
-  #};
+  # };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    
+   
+ 
     android-udev-rules
     arandr
+    arc-theme
+    arc-icon-theme
     calc
     cmus
     chromium
@@ -104,6 +107,7 @@
     curl
     dmenu
     dunst
+    enlightenment.terminology
     feh
     firefox 
     freecad
@@ -112,6 +116,7 @@
     glxinfo
     go-mtpfs
     htop
+    kcalc
     khal
     libreoffice
     lxappearance
@@ -123,6 +128,7 @@
     okular
     pavucontrol
     pciutils
+    pcmanfm
     ranger
     rofi
     solaar
@@ -143,7 +149,7 @@
     vlc
     zip
     zsh
-    xhost
+    xorg.xhost
   ];
 
   fonts.fonts = [ pkgs.source-code-pro pkgs.inconsolata ];
@@ -204,7 +210,7 @@
   enable = true;
   layout = "pl";
   xkbOptions = "eurosign:e";
-  # videoDrivers = [ "nouveau" "intel" ];
+  videoDrivers = [ "intel" ];
 
   # Enable touchpad support.
   libinput = {
@@ -259,7 +265,7 @@
   
   
   # slim
-    displayManager = {
+   displayManager = {
     slim.enable = true;
     slim.autoLogin = true;
     slim.defaultUser = "seb";
@@ -285,7 +291,7 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "17.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
 
 
 }
