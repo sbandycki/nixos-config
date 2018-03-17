@@ -131,6 +131,7 @@
     pcmanfm
     python27Full
     python3Full
+    pythonPackages.pip
     ranger
     rofi
     solaar
