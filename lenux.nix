@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/blkid";
+      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
       preLVM = true;
       allowDiscards = true;
     }
@@ -129,6 +129,8 @@
     pavucontrol
     pciutils
     pcmanfm
+    python27Full
+    python3Full
     ranger
     rofi
     solaar
@@ -140,7 +142,7 @@
     # yakuake
     vanilla-dmz
     vdirsyncer
-    vim
+    vim_configurable
     vscode 
     wget
     which
