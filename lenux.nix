@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
+      device = "/dev/disk/by-uuid/blkid";
       preLVM = true;
       allowDiscards = true;
     }
@@ -59,6 +59,18 @@
     time.timeZone = "Europe/Dublin";
 
   nixpkgs.config = {
+
+  packageOverrides = superPkgs: {
+    steam = superPkgs.steam.override {
+      withPrimus = true;
+      extraPkgs = p: with p; [
+        glxinfo        # for diagnostics
+        nettools       # for `hostname`, which some scripts expect
+        bumblebee      # for optirun
+      ];
+    };
+  };
+
 
 
     allowUnfree = true;
@@ -84,6 +96,9 @@
   hardware.bumblebee.enable = true;
   hardware.bumblebee.driver = "nvidia";
   # hardware.bumblebee.connectDisplay = true;
+  boot.extraModprobeConfig = "bbswitch load_state=-1 unload_state=1";
+  hardware.bumblebee.group = "video";
+
 
   # Use librsvg's gdk-pixbuf loader cache file as it enables gdk-pixbuf to load SVG files (important for icons)
   #   environment.sessionVariables = {
