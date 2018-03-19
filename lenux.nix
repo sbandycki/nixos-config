@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/blkid";
+      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
       preLVM = true;
       allowDiscards = true;
     }
@@ -60,8 +60,17 @@
 
   nixpkgs.config = {
 
-  packageOverrides = superPkgs: {
-    steam = superPkgs.steam.override {
+  packageOverrides = pkgs: {
+    
+ #   polybar = pkgs.polybar.override {
+ #     alsaSupport = true;
+ #     i3Support = true;
+ #     iwSupport = true;
+ #     githubSupport = true;
+ #     mpdSupport = true;
+ #   };
+    
+    steam = pkgs.steam.override {
       withPrimus = true;
       extraPkgs = p: with p; [
         glxinfo        # for diagnostics
@@ -109,7 +118,8 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
    
- 
+    acpi
+    acpitool 
     android-udev-rules
     arandr
     arc-theme
@@ -123,6 +133,7 @@
     dmenu
     dunst
     enlightenment.terminology
+    exfat
     feh
     firefox 
     freecad
@@ -130,6 +141,7 @@
     git
     glxinfo
     go-mtpfs
+    gwenview
     htop
     kcalc
     khal
@@ -138,12 +150,14 @@
     mesa 
     networkmanagerapplet
     ncdu
+    nitrogen
     ntfs3g
     xorg.xbacklight
     okular
     pavucontrol
     pciutils
     pcmanfm
+    # polybar
     python27Full
     python3Full
     pythonPackages.pip
