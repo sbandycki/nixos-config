@@ -137,14 +137,15 @@
     feh
     firefox 
     freecad
+    gptfdisk
     gimp
     git
     glxinfo
     go-mtpfs
+    gnome3.adwaita-icon-theme
     gwenview
     htop
     kcalc
-    khal
     libreoffice
     lxappearance
     mesa 
@@ -297,11 +298,11 @@
   
   
   # slim
-   displayManager = {
-    slim.enable = true;
-    slim.autoLogin = true;
-    slim.defaultUser = "seb";
-   };
+  # displayManager = {
+  #  slim.enable = true;
+  #  slim.autoLogin = true;
+  #  slim.defaultUser = "seb";
+  # };
     
 
     };  
