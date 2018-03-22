@@ -52,7 +52,7 @@
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
-    defaultLocale = "en_IE.UTF-8";
+    defaultLocale = "en_US.UTF-8";
     };
 
   # Set your time zone.
@@ -98,6 +98,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+
   # Power 
   powerManagement.enable = true; 
 
@@ -124,6 +127,7 @@
     arandr
     arc-theme
     arc-icon-theme
+    blueman
     calc
     cmus
     chromium
@@ -141,11 +145,14 @@
     gimp
     git
     glxinfo
+    gnome3.cheese
     go-mtpfs
     gnome3.adwaita-icon-theme
     gwenview
     htop
+    imagemagick
     kcalc
+    kate
     libreoffice
     lxappearance
     mesa 
@@ -164,9 +171,10 @@
     pythonPackages.pip
     ranger
     rofi
+    scrot
     solaar
     sxiv
-    # tilda
+    tilda
     tmux
     unzip
     unrar
@@ -241,7 +249,7 @@
   xserver = {
   # Enable the X11 windowing system.
   enable = true;
-  layout = "pl";
+  layout = "us";
   xkbOptions = "eurosign:e";
   videoDrivers = [ "intel" ];
 
@@ -279,7 +287,7 @@
   # desktopManager.plasma5.enable = true;
   
   # Gdm
-  # displayManager = {
+  #displayManager = {
   #  gdm.enable = true;
   #  gdm.wayland = false;
   #  gdm.autoLogin.enable = true;
@@ -298,11 +306,11 @@
   
   
   # slim
-  # displayManager = {
-  #  slim.enable = true;
-  #  slim.autoLogin = true;
-  #  slim.defaultUser = "seb";
-  # };
+   displayManager = {
+    slim.enable = true;
+    slim.autoLogin = true;
+    slim.defaultUser = "seb";
+   };
     
 
     };  
