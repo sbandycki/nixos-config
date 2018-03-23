@@ -128,6 +128,7 @@
     arc-theme
     arc-icon-theme
     blueman
+    breeze-icons
     calc
     cmus
     chromium
@@ -246,6 +247,9 @@
   avahi.publish.enable = true;
   avahi.publish.userServices = true;
 
+  # custom udev packages
+  udev.packages = [ pkgs.solaar pkgs.android-udev-rules ];
+
   xserver = {
   # Enable the X11 windowing system.
   enable = true;
@@ -317,15 +321,17 @@
   };
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.extraGroups.plugdev = { };
   users.extraUsers.seb = {
   isNormalUser = true;
   name = "seb";
   group = "users";
   createHome = true;
   home = "/home/seb";
-  extraGroups = [ "wheel" "networkmanager" "docker" "video" ];
+  extraGroups = [ "wheel" "networkmanager" "docker" "video" "input" "plugdev" "dialout" ];
   shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
+  # initialPassword = "HelloWorld";
   };
 
   # This value determines the NixOS release with which your system is to be
