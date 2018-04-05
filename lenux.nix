@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
+      device = "/dev/disk/by-uuid/blkid";
       preLVM = true;
       allowDiscards = true;
     }
@@ -62,13 +62,13 @@
 
   packageOverrides = pkgs: {
     
- #   polybar = pkgs.polybar.override {
- #     alsaSupport = true;
- #     i3Support = true;
- #     iwSupport = true;
- #     githubSupport = true;
- #     mpdSupport = true;
- #   };
+  polybar = pkgs.polybar.override {
+      alsaSupport = true;
+      i3Support = true;
+      iwSupport = true;
+      githubSupport = true;
+      mpdSupport = true;
+  };
     
     steam = pkgs.steam.override {
       withPrimus = true;
@@ -78,7 +78,9 @@
         bumblebee      # for optirun
       ];
     };
+  
   };
+
 
 
 
@@ -90,7 +92,7 @@
     # firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
     firefox.enableGoogleTalkPlugin = true;
-    # firefox.enableGnomeExtensions = true;
+   #  firefox.enableGnomeExtensions = true; 
 	  };
 
   
@@ -146,6 +148,7 @@
     gimp
     git
     glxinfo
+    gparted
     gnome3.cheese
     go-mtpfs
     gnome3.adwaita-icon-theme
@@ -166,8 +169,8 @@
     pavucontrol
     pciutils
     pcmanfm
-    # polybar
-    python27Full
+    polybar
+    # python27Full
     python3Full
     pythonPackages.pip
     ranger
@@ -175,10 +178,9 @@
     scrot
     solaar
     sxiv
-    tilda
+    # tilda
     tmux
     unzip
-    unrar
     # yakuake
     vanilla-dmz
     vdirsyncer
@@ -190,7 +192,6 @@
     xorg.xinit
     vlc
     zip
-    zsh
     xorg.xhost
   ];
 
@@ -199,6 +200,7 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.bash.enableCompletion = true;
+  programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
@@ -303,14 +305,14 @@
 
      
   # i3
-   desktopManager.xterm.enable = false;
-   windowManager.default = "i3";
-   windowManager.i3.enable = true;
-   windowManager.i3.package = pkgs.i3-gaps;
+    desktopManager.xterm.enable = false;
+    windowManager.default = "i3";
+    windowManager.i3.enable = true;
+    windowManager.i3.package = pkgs.i3-gaps;
   
   
   # slim
-   displayManager = {
+  displayManager = {
     slim.enable = true;
     slim.autoLogin = true;
     slim.defaultUser = "seb";
@@ -329,7 +331,7 @@
   createHome = true;
   home = "/home/seb";
   extraGroups = [ "wheel" "networkmanager" "docker" "video" "input" "plugdev" "dialout" ];
-  shell = "/run/current-system/sw/bin/bash";
+  shell = "/run/current-system/sw/bin/zsh";
   uid = 1000;
   # initialPassword = "HelloWorld";
   };
