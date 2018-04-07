@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/blkid";
+      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
       preLVM = true;
       allowDiscards = true;
     }
@@ -241,13 +241,15 @@
   # Enable CUPS to print documents.
   printing.enable = true;
   printing.drivers = [ pkgs.hplip ];
-  printing.browsing = true;
-  printing.listenAddresses = [ "*:631" ]; # Not 100% sure this is needed and you might want to restrict to the local network
+  # printing.browsing = true;
+  #  printing.listenAddresses = [ "*:631" ]; # Not 100% sure this is needed and you might want to restrict to the local network
+
 
   # Enable automatic discovery of the printer from other Linux systems with avahi running.
   avahi.enable = true;
-  avahi.publish.enable = true;
-  avahi.publish.userServices = true;
+  # avahi.publish.enable = true;
+  # avahi.publish.userServices = true;
+  avahi.nssmdns = true;
 
   # custom udev packages
   udev.packages = [ pkgs.solaar pkgs.android-udev-rules ];
