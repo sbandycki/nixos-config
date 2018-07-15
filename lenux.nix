@@ -36,7 +36,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
+      device = "/dev/disk/by-uuid/";
       preLVM = true;
       allowDiscards = true;
     }
@@ -56,7 +56,7 @@
     };
 
   # Set your time zone.
-    time.timeZone = "Europe/Dublin";
+    time.timeZone = "Europe/Warsaw";
 
   nixpkgs.config = {
 
@@ -143,7 +143,6 @@
     exfat
     feh
     firefox 
-    freecad
     gptfdisk
     gimp
     git
@@ -152,6 +151,7 @@
     gnome3.cheese
     go-mtpfs
     gnome3.adwaita-icon-theme
+    gvfs
     gwenview
     htop
     imagemagick
@@ -162,16 +162,17 @@
     mesa 
     networkmanagerapplet
     ncdu
+    neovim
     nitrogen
     ntfs3g
     xorg.xbacklight
     okular
     pavucontrol
     pciutils
-    pcmanfm
     polybar
     # python27Full
     python3Full
+    python36Packages.neovim
     pythonPackages.pip
     ranger
     rofi
@@ -184,15 +185,23 @@
     # yakuake
     vanilla-dmz
     vdirsyncer
-    vim_configurable
+    #  vim_configurable
     vscode 
     wget
     which
     xfce.thunar
+    xfce.thunar-volman
     xorg.xinit
     vlc
     zip
-    xorg.xhost
+    xorig.xhost
+    
+    # 3D modelling/printing
+    freecad
+    # repetier-host
+    slic3r
+    cura
+
   ];
 
   fonts.fonts = [ pkgs.source-code-pro pkgs.inconsolata ];
@@ -201,7 +210,7 @@
   # started in user sessions.
   programs.bash.enableCompletion = true;
   programs.zsh.enable = true;
-  programs.zsh.enableCompletion = true;
+  # programs.zsh.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
   
@@ -333,7 +342,7 @@
   createHome = true;
   home = "/home/seb";
   extraGroups = [ "wheel" "networkmanager" "docker" "video" "input" "plugdev" "dialout" ];
-  shell = "/run/current-system/sw/bin/zsh";
+  shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
   # initialPassword = "HelloWorld";
   };
