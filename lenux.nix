@@ -194,7 +194,7 @@
     xorg.xinit
     vlc
     zip
-    xorig.xhost
+    xorg.xhost
     
     # 3D modelling/printing
     freecad
