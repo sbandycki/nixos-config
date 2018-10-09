@@ -18,11 +18,14 @@
   # boot.loader.efi.canTouchEfiVariables = true; 
 
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+  	grub.enable = true;
+  	grub.version = 2;
+  	grub.device = "nodev";
+  	grub.efiSupport = true;
+  	efi.canTouchEfiVariables = true;
+  	grub.useOSProber = true;
+  };
 
   # Grub menu is painted really slowly on HiDPI, so we lower the
   # resolution. Unfortunately, scaling to 1280x720 (keeping aspect
@@ -36,7 +39,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
-      device = "/dev/disk/by-uuid/";
+      device = "/dev/disk/by-uuid/c4d9f5f0-7494-4f75-8cbf-4c6e9934cdba";
       preLVM = true;
       allowDiscards = true;
     }
@@ -62,22 +65,22 @@
 
   packageOverrides = pkgs: {
     
-  polybar = pkgs.polybar.override {
-      alsaSupport = true;
-      i3Support = true;
-      iwSupport = true;
-      githubSupport = true;
-      mpdSupport = true;
-  };
+  #polybar = pkgs.polybar.override {
+  #    alsaSupport = true;
+  #    i3Support = true;
+  #    iwSupport = true;
+  #   githubSupport = true;
+  #    mpdSupport = true;
+  #};
     
-    steam = pkgs.steam.override {
-      withPrimus = true;
-      extraPkgs = p: with p; [
-        glxinfo        # for diagnostics
-        nettools       # for `hostname`, which some scripts expect
-        bumblebee      # for optirun
-      ];
-    };
+  #  steam = pkgs.steam.override {
+  #    withPrimus = true;
+  #   extraPkgs = p: with p; [
+  #      glxinfo        # for diagnostics
+  #      nettools       # for `hostname`, which some scripts expect
+  #      bumblebee      # for optirun
+  #   ];
+  #  };
   
   };
 
@@ -91,7 +94,7 @@
     # chromium.enableWideVine = true;
     # firefox.enableAdobeFlash = true;
     firefox.enablePepperFlash = true;
-    firefox.enableGoogleTalkPlugin = true;
+    # firefox.enableGoogleTalkPlugin = true;
    #  firefox.enableGnomeExtensions = true; 
 	  };
 
@@ -124,11 +127,13 @@
   environment.systemPackages = with pkgs; [
    
     acpi
-    acpitool 
+    acpitool
+    adobe-reader
     android-udev-rules
     arandr
     arc-theme
     arc-icon-theme
+    arduino
     blueman
     breeze-icons
     calc
@@ -167,10 +172,11 @@
     ntfs3g
     xorg.xbacklight
     okular
+    openjdk10
     pavucontrol
     pciutils
-    polybar
-    # python27Full
+    # polybar
+    python27Full
     python3Full
     python36Packages.neovim
     pythonPackages.pip
@@ -186,15 +192,17 @@
     vanilla-dmz
     vdirsyncer
     #  vim_configurable
-    vscode 
+    # vscode 
     wget
     which
     xfce.thunar
     xfce.thunar-volman
     xorg.xinit
+    xorg.xmodmap
     vlc
     zip
     xorg.xhost
+    xorg.xev
     
     # 3D modelling/printing
     freecad
@@ -351,7 +359,8 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  # system.stateVersion = "18.03"; # Did you read the comment?
+  system.autoUpgrade.enable = true;
 
 
 }
