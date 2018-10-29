@@ -131,6 +131,9 @@
     adobe-reader
     android-udev-rules
     arandr
+    hicolor-icon-theme
+    adwaita-icon-theme
+    papirus-icon-theme
     arc-theme
     arc-icon-theme
     arduino
@@ -170,6 +173,7 @@
     neovim
     nitrogen
     ntfs3g
+    nautilus
     xorg.xbacklight
     okular
     openjdk10
@@ -188,11 +192,13 @@
     # tilda
     tmux
     unzip
+    udiskie
+    
     # yakuake
     vanilla-dmz
     vdirsyncer
     #  vim_configurable
-    # vscode 
+    vscode 
     wget
     which
     xfce.thunar
