@@ -165,6 +165,7 @@
     imagemagick
     kcalc
     kate
+    i3lock-fancy
     libreoffice
     lxappearance
     mesa 
