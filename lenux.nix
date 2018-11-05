@@ -14,23 +14,26 @@
 
 
   # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true; 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true; 
 
   # Use the GRUB 2 boot loader.
-  boot.loader = {
-  	grub.enable = true;
-  	grub.version = 2;
-  	grub.device = "nodev";
-  	grub.efiSupport = true;
-  	efi.canTouchEfiVariables = true;
-  	grub.useOSProber = true;
-  };
+  # boot.loader = {
+  # efi.efiSysMountPoint = "/boot";
+  #	grub.enable = true;
+  #	grub.version = 2;
+  #	grub.device = "nodev";
+  #	grub.efiSupport = true;
+  #	efi.canTouchEfiVariables = true;
+  #	grub.useOSProber = true;
+ 
+  #};
 
   # Grub menu is painted really slowly on HiDPI, so we lower the
   # resolution. Unfortunately, scaling to 1280x720 (keeping aspect
   # ratio) doesn't seem to work, so we just pick another low one.
-  boot.loader.grub.gfxmodeEfi = "1920x1080";
+  # boot.loader.grub.gfxmodeEfi = "1920x1080";
+
 
 
   # Supposedly better for the SSD.
@@ -131,11 +134,13 @@
     adobe-reader
     android-udev-rules
     arandr
-    hicolor-icon-theme
-    adwaita-icon-theme
-    papirus-icon-theme
     arc-theme
     arc-icon-theme
+    gnome3.adwaita-icon-theme
+    gnome-themes-standard
+    hicolor-icon-theme
+    paper-icon-theme
+    papirus-icon-theme
     arduino
     blueman
     breeze-icons
@@ -147,6 +152,7 @@
     curl
     dmenu
     dunst
+    efibootmgr
     enlightenment.terminology
     exfat
     feh
@@ -163,18 +169,18 @@
     gwenview
     htop
     imagemagick
+    i3lock-fancy
     kcalc
     kate
-    i3lock-fancy
     libreoffice
     lxappearance
-    mesa 
+    mesa_noglu 
     networkmanagerapplet
     ncdu
+    gnome3.nautilus
     neovim
     nitrogen
     ntfs3g
-    nautilus
     xorg.xbacklight
     okular
     openjdk10
@@ -194,7 +200,6 @@
     tmux
     unzip
     udiskie
-    
     # yakuake
     vanilla-dmz
     vdirsyncer
@@ -242,9 +247,9 @@
  
 
   # steam
-  users.users.seb.packages = [
-    pkgs.steam
-  ];
+  # users.users.seb.packages = [
+  #  pkgs.steam
+  #];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
@@ -265,14 +270,14 @@
   # Enable CUPS to print documents.
   printing.enable = true;
   printing.drivers = [ pkgs.hplip ];
-  # printing.browsing = true;
+  printing.browsing = true;
   #  printing.listenAddresses = [ "*:631" ]; # Not 100% sure this is needed and you might want to restrict to the local network
 
 
   # Enable automatic discovery of the printer from other Linux systems with avahi running.
   avahi.enable = true;
-  # avahi.publish.enable = true;
-  # avahi.publish.userServices = true;
+  avahi.publish.enable = true;
+  avahi.publish.userServices = true;
   avahi.nssmdns = true;
 
   # custom udev packages
@@ -334,7 +339,7 @@
     desktopManager.xterm.enable = false;
     windowManager.default = "i3";
     windowManager.i3.enable = true;
-    windowManager.i3.package = pkgs.i3-gaps;
+    # windowManager.i3.package = pkgs.i3-gaps;
   
   
   # slim
@@ -359,14 +364,14 @@
   extraGroups = [ "wheel" "networkmanager" "docker" "video" "input" "plugdev" "dialout" ];
   shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
-  # initialPassword = "HelloWorld";
+  # initialPassword = "helloworld";
   };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  # system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "18.09"; # Did you read the comment?
   system.autoUpgrade.enable = true;
 
 
