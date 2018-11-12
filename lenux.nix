@@ -145,24 +145,28 @@
     blueman
     breeze-icons
     calc
+    cmake
     cmus
     chromium
     # chrome-gnome-shell
     compton
     curl
+    dfu-util
     dmenu
     dunst
     efibootmgr
     enlightenment.terminology
     exfat
     feh
-    firefox 
+    firefox
+    gcc-arm-embedded
     gptfdisk
     gimp
     git
     glxinfo
     gparted
     gnome3.cheese
+    gnumake
     go-mtpfs
     gnome3.adwaita-icon-theme
     gvfs
@@ -174,7 +178,8 @@
     kate
     libreoffice
     lxappearance
-    mesa_noglu 
+    mesa_noglu
+    nix-prefetch-github
     networkmanagerapplet
     ncdu
     gnome3.nautilus
@@ -187,10 +192,12 @@
     pavucontrol
     pciutils
     # polybar
-    python27Full
+    # python27Full
     python3Full
+    python36Packages.pip
+    python36Packages.setuptools
     python36Packages.neovim
-    pythonPackages.pip
+    # python36Packages.jinja2
     ranger
     rofi
     scrot
@@ -199,6 +206,7 @@
     # tilda
     tmux
     unzip
+    usbutils
     udiskie
     # yakuake
     vanilla-dmz
