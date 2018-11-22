@@ -183,27 +183,24 @@
     networkmanagerapplet
     ncdu
     gnome3.nautilus
-    neovim
     nitrogen
     ntfs3g
     xorg.xbacklight
     okular
-    openjdk10
+    # openjdk10
     pavucontrol
     pciutils
     # polybar
     # python27Full
     python3Full
-    python36Packages.pip
-    python36Packages.setuptools
-    python36Packages.neovim
-    # python36Packages.jinja2
     ranger
     rofi
     scrot
     solaar
     sxiv
     # tilda
+    # vim
+    neovim
     tmux
     unzip
     usbutils
@@ -370,7 +367,7 @@
   createHome = true;
   home = "/home/seb";
   extraGroups = [ "wheel" "networkmanager" "docker" "video" "input" "plugdev" "dialout" ];
-  shell = "/run/current-system/sw/bin/bash";
+  shell = "/run/current-system/sw/bin/zsh";
   uid = 1000;
   # initialPassword = "helloworld";
   };
