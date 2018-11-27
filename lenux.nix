@@ -234,8 +234,8 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.bash.enableCompletion = true;
-  programs.zsh.enable = true;
-  # programs.zsh.enableCompletion = true;
+  programs.zsh.enable = false;
+  programs.zsh.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
   
@@ -367,7 +367,7 @@
   createHome = true;
   home = "/home/seb";
   extraGroups = [ "wheel" "networkmanager" "docker" "video" "input" "plugdev" "dialout" ];
-  shell = "/run/current-system/sw/bin/zsh";
+  shell = "/run/current-system/sw/bin/bash";
   uid = 1000;
   # initialPassword = "helloworld";
   };
