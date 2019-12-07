@@ -291,7 +291,7 @@
   xserver = {
   # Enable the X11 windowing system.
   enable = true;
-  layout = "us";
+  layout = "gb";
   xkbOptions = "eurosign:e";
   # videoDrivers = [ "amdgpu" ];
 
@@ -306,16 +306,17 @@
   };
 
   # Enable Xmonad
-  #windowManager.xmonad = { 
-  #  enable = true;
-  #  enableContribAndExtras = true;
-  #  extraPackages = haskellPackages: [
-  #  haskellPackages.xmonad-contrib
-  #     haskellPackages.xmonad-extras
-  #      haskellPackages.xmobar
-  #      haskellPackages.xmonad
-  #    ];
-  #};
+  windowManager.xmonad = { 
+    enable = true;
+    enableContribAndExtras = true;
+    extraPackages = haskellPackages: [
+    haskellPackages.xmonad-contrib
+    haskellPackages.xmonad-extras
+    haskellPackages.xmobar
+    haskellPackages.xmonad
+     ];
+  };
+  windowManager.default = "xmonad";
 
   # sets it as default
   # windowManager.default = "xmonad";
@@ -332,9 +333,9 @@
   #displayManager = {
   #  gdm.enable = true;
   #  gdm.wayland = false;
-  #  gdm.autoLogin.enable = true;
+  #  gdm.autoLogin.enable = false;
   #  gdm.autoLogin.user = "seb";
-  #	};
+  #  #};
   
   # Gnome
   # desktopManager.gnome3.enable = true;
@@ -342,7 +343,7 @@
      
   # i3
     desktopManager.xterm.enable = false;
-    windowManager.default = "i3";
+  #  windowManager.default = "i3";
     windowManager.i3.enable = true;
     windowManager.i3.package = pkgs.i3-gaps;
   
@@ -350,8 +351,8 @@
   # slim
   displayManager = {
     slim.enable = true;
-    slim.autoLogin = true;
-    slim.defaultUser = "seb";
+  # slim.autoLogin = true;
+  #  slim.defaultUser = "seb";
    };
     
 
